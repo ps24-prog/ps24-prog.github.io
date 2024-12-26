@@ -861,6 +861,63 @@
         <li class="md-nav__item">
   <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
+      第零阶段代码任务
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第零阶段代码任务">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      组件代理：装饰器模式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_attrs" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_attrs 的庐山真面目
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      边框代理实现
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="边框代理实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      构造函数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
       后续任务预告 &amp; 建议
     </span>
   </a>
@@ -2853,6 +2910,63 @@
         <li class="md-nav__item">
   <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
+      第零阶段代码任务
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第零阶段代码任务">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      组件代理：装饰器模式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_attrs" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_attrs 的庐山真面目
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      边框代理实现
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="边框代理实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      构造函数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
       后续任务预告 &amp; 建议
     </span>
   </a>
@@ -3462,10 +3576,266 @@
 <li>拉取项目代码</li>
 <li>配置好运行环境并正确运行 demo</li>
 <li>实践以上内容</li>
-<li>完成一个小任务（12/25 18:30 发布，推荐在此时间之前完成上面步骤）</li>
+<li>完成一个小任务（12/27 18:30 前发布，推荐在此时间之前完成上面步骤）</li>
 <li>将完成的任务代码按要求打包提交到指定位置</li>
 </ul>
-<h2 id="_14">后续任务预告 &amp; 建议</h2>
+<h2 id="_14">第零阶段代码任务</h2>
+<div class="admonition warning">
+<p class="admonition-title">建设中</p>
+<p>这个部分正在建设中。内容暂时属于草稿，仅供参考。</p>
+</div>
+<p>本阶段的代码任务的目的是改进 <code>border_proxy</code> 类的功能（定义在 <code>minitui/*/proxies/</code> 中）。</p>
+<p>具体来说，要达成如下效果：</p>
+<ul>
+<li>支持边框在所属组件被鼠标悬停于其上时/成为焦点组件时高亮。</li>
+<li>支持在边框右上角添加一个退出按钮子组件。该组件显示为一个红色的 &#9600; (<code>\u2580</code>) 符号，同样应在鼠标悬停在其上时高亮，并在被点击时使得其所在组件退出。</li>
+</ul>
+<p>实现示例视频如下：</p>
+<video controls>
+<source src="../../../pics/phase0.mp4" />
+</video>
+
+<p>要完成第零阶段的代码任务，必须对代码框架有着更加深入的认识才行。</p>
+<p>接下来我们就来讲讲。</p>
+<h3 id="_15">组件代理：装饰器模式</h3>
+<p>要改进 <code>border_proxy</code>（下称边框代理）类的实现，首先需要了解它原先的实现。</p>
+<p>OK，让我们打开 <code>proxies/border_proxy.h</code>，看到：</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">tui_border_proxy</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">tui_widget_proxy</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">factory_reg</span><span class="p">(</span><span class="n">tui_border_proxy</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;border&quot;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">tui_border_proxy</span><span class="p">(</span><span class="n">tui_widget</span><span class="w"> </span><span class="o">*</span><span class="n">content</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">tui_fmt</span><span class="o">&gt;</span><span class="w"> </span><span class="n">args</span><span class="o">=</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">tui_fmt</span><span class="o">&gt;</span><span class="p">());</span>
+
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">tui_rect</span><span class="w"> </span><span class="nf">area_transform</span><span class="p">(</span><span class="n">tui_rect</span><span class="w"> </span><span class="n">area</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">tui_fmt</span><span class="o">&gt;</span><span class="w"> </span><span class="n">args</span><span class="o">=</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">tui_fmt</span><span class="o">&gt;</span><span class="p">());</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">draw</span><span class="p">(</span><span class="n">tui_point</span><span class="w"> </span><span class="n">point</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>我们可以看到，该类继承自……<code>tui_widget_proxy</code>，这是个啥类？</p>
+<p>OK，认命了，我们接着看这个类的定义吧。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">widget_proxy.h</label><label for="__tabbed_10_2">widget_proxy.cpp</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">tui_widget_proxy</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">tui_widget</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">factory_reg</span><span class="p">(</span><span class="n">tui_widget_proxy</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PROXY&quot;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">tui_widget</span><span class="w"> </span><span class="o">*</span><span class="n">content</span><span class="p">;</span>
+<span class="w">  </span><span class="n">tui_widget_proxy</span><span class="p">(</span><span class="n">tui_widget</span><span class="w"> </span><span class="o">*</span><span class="n">content</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">tui_fmt</span><span class="o">&gt;</span><span class="w"> </span><span class="n">args</span><span class="o">=</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">tui_fmt</span><span class="o">&gt;</span><span class="p">());</span>
+
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">tui_rect</span><span class="w"> </span><span class="nf">area_transform</span><span class="p">(</span><span class="n">tui_rect</span><span class="w"> </span><span class="n">area</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">tui_fmt</span><span class="o">&gt;</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">draw</span><span class="p">(</span><span class="n">tui_point</span><span class="w"> </span><span class="n">point</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="w">  </span><span class="n">tui_event</span><span class="w"> </span><span class="o">*</span><span class="nf">on_event</span><span class="p">(</span><span class="n">tui_event</span><span class="w"> </span><span class="o">*</span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="w">  </span><span class="n">tui_event</span><span class="w"> </span><span class="o">*</span><span class="nf">on_child_exit</span><span class="p">(</span><span class="n">tui_widget</span><span class="w"> </span><span class="o">*</span><span class="n">child</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="w">  </span><span class="n">tui_widget</span><span class="w"> </span><span class="o">*</span><span class="nf">proxy</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="w">  </span><span class="o">~</span><span class="n">tui_widget_proxy</span><span class="p">();</span>
+<span class="p">};</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">tui_widget_proxy</span><span class="o">::</span><span class="n">tui_widget_proxy</span><span class="p">(</span>
+<span class="w">  </span><span class="n">tui_widget</span><span class="w"> </span><span class="o">*</span><span class="n">content</span><span class="p">,</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">tui_fmt</span><span class="o">&gt;</span><span class="w"> </span><span class="n">args</span>
+<span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">tui_widget</span><span class="p">(</span><span class="n">content</span><span class="o">-&gt;</span><span class="n">area</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">strcpy</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PROXY&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">content</span><span class="p">;</span>
+<span class="w">  </span><span class="n">content</span><span class="o">-&gt;</span><span class="n">proxize_widget</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="w">  </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">area</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">content</span><span class="o">-&gt;</span><span class="n">area</span><span class="p">;</span>
+<span class="w">  </span><span class="n">tui_assert</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">area</span><span class="p">.</span><span class="n">isvalid</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="n">tui_rect</span><span class="w"> </span>
+<span class="n">tui_widget_proxy</span><span class="o">::</span><span class="n">area_transform</span><span class="p">(</span>
+<span class="w">  </span><span class="n">tui_rect</span><span class="w"> </span><span class="n">area</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">tui_fmt</span><span class="o">&gt;</span><span class="w"> </span><span class="n">args</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">args</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">area</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">tui_widget_proxy</span><span class="o">::</span><span class="n">draw</span><span class="p">(</span>
+<span class="w">  </span><span class="n">tui_point</span><span class="w"> </span><span class="n">point</span>
+<span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">content</span><span class="o">-&gt;</span><span class="n">draw</span><span class="p">(</span><span class="n">point</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">tui_event</span><span class="w"> </span><span class="o">*</span><span class="n">tui_widget_proxy</span><span class="o">::</span><span class="n">on_event</span><span class="p">(</span>
+<span class="w">  </span><span class="n">tui_event</span><span class="w"> </span><span class="o">*</span><span class="n">event</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">content</span><span class="o">-&gt;</span><span class="n">on_event</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">tui_event</span><span class="w"> </span><span class="o">*</span>
+<span class="n">tui_widget_proxy</span><span class="o">::</span><span class="n">on_child_exit</span><span class="p">(</span>
+<span class="w">  </span><span class="n">tui_widget</span><span class="w"> </span><span class="o">*</span><span class="n">child</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">content</span><span class="o">-&gt;</span><span class="n">on_child_exit</span><span class="p">(</span><span class="n">child</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">tui_widget</span><span class="w"> </span><span class="o">*</span>
+<span class="n">tui_widget_proxy</span><span class="o">::</span><span class="n">proxy</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">content</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">tui_widget_proxy</span><span class="o">::~</span><span class="n">tui_widget_proxy</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">tui_widget</span><span class="o">::</span><span class="n">delete_widget</span><span class="p">(</span><span class="n">content</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>总算有我们看得懂的东西了：这个类继承自 <code>tui_widget</code>，看来它也是一个派生组件类。</p>
+<p>而 <code>tui_border_proxy</code> 继承了它，说明其是一个在这个派生组件上实现的一个具体组件。</p>
+<p>仔细看看还可以发现 <code>proxies/</code> 目录下的其他类都继承了 <code>tui_widget_proxy</code>。</p>
+<p>这是一种<strong>多层继承</strong>的设计，<code>tui_widget_proxy</code> 既是具有 <code>tui_widget</code> 特征/接口的派生类，也是一系列二级派生类共同特征/接口的基类。</p>
+<p>换句话说，<code>tui_widget_proxy</code> 本身代表的是一系列具体组件类，即 minitui 中的<em>「组件代理」</em>。</p>
+<p>我们现在就来介绍 minitui 中组件代理的概念。</p>
+<p>为了达成这一特性，组件代理实现的接口都形如这样：</p>
+<div class="highlight"><pre><span></span><code><span class="k">auto</span><span class="w"> </span><span class="n">tui_widget_proxy</span><span class="o">::</span><span class="n">some_interface</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// do something before calling content widget</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">content_res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">content</span><span class="o">-&gt;</span><span class="n">some_interface</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// do something after calling content widget</span>
+<span class="w">  </span><span class="c1">// do something to the return value</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">content_res</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>每个组件代理对象构造时需要接受一个被代理的组件指针，要将组件外部的</p>
+<details class="tip" open="open">
+<summary>批判性思考：直接访问成员 vs 封装成员访问接口</summary>
+<p>minitui 的框架代码中的所有类成员都是公开可访问的，并且大量存在直接访问对象成员的代码。</p>
+<p>这样做其实是破坏了对象的抽象的——许多时候我们希望一个对象的成员在被访问时（读取/修改）时进行一些额外的操作，例如：</p>
+<ul>
+<li>我们希望在组件的 <code>updated</code> 被读取时，总是返回最内层真实组件的 <code>updated</code> 属性。</li>
+<li>我们希望在组件的 <code>area</code> 被修改时，总会调用组件的 <code>on_area_change()</code> 接口。</li>
+</ul>
+</details>
+<p>所有外部属性做成组件接口，然后让。</p>
+<details class="tip" open="open">
+<summary>批判性思考：为什么一定要转交“外层属性”？</summary>
+<p>必须承认，这里将组件的“外部”属性全部交给最外层代理组件的实现不是最好的。</p>
+<p>一个可能更好的实现方式是将其保留在最内层的真实组件。因为随着外层代理的动态变化，外部属性需要反复在不同组件之间传递，比较麻烦而且容易出错。</p>
+<p>如果将所有外部属性全部保留在内部，只需要将获取外部属性的接口方法修改为获取最内层组件的外部属性，并限制外部属性为私有，强制外部调用接口获取属性而不是直接访问成员即可。</p>
+</details>
+<p>minitui 要求所有代理组件类的构造函数参数格式统一为 <code>(tui_widget *content, std::vector&lt;tui_fmt&gt; args)</code>，第一个参数是被代理组件，第二个参数则是创建代理的参数，根据此参数可以自定义一些代理性质。</p>
+<h3 id="set_attrs"><code>set_attrs</code> 的庐山真面目</h3>
+<p>我们之前已经看到，可以通过调用组件的 <code>set_attrs()</code> 方法来在不改变组件实现的情况下为其添加功能。</p>
+<p>事实上，到这里你应该可以猜到 <code>set_attrs()</code> 是通过 <code>proxy</code> 装饰器机制实现的。</p>
+<div class="highlight"><pre><span></span><code><span class="n">tui_widget</span><span class="w"> </span><span class="o">*</span>
+<span class="nf">tui_widget::set_attrs</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">tui_fmt</span><span class="o">&gt;</span><span class="w"> </span><span class="n">attrs</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">tui_proxy_factory</span><span class="o">::</span><span class="n">add</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">attrs</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>这里它接受一个 <code>tui_fmt</code>（即我们实现的格式化字符串）列表为参数，将自己和这个列表作为参数调用了 <code>tui_proxy_factory::add()</code> 函数。</p>
+<p>顾名思义，这个函数是专门负责解析性质列表，然后按此给某个组件嵌套上代理组件的。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:1"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">proxy_factory.h</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="n">tui_widget</span><span class="w"> </span><span class="o">*</span><span class="nf">proxy_add</span><span class="p">(</span>
+<span class="w">  </span><span class="n">tui_widget</span><span class="w"> </span><span class="o">*</span><span class="n">widget</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">proxy_name</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">tui_fmt</span><span class="o">&gt;</span><span class="w"> </span><span class="n">args</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">proxy</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">proxy_create_list</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">proxy</span><span class="p">.</span><span class="n">first</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">proxy_name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">proxy</span><span class="p">.</span><span class="n">second</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">Warn</span><span class="p">(</span><span class="s">&quot;Proxy not found: %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">proxy_name</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">widget</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="n">tui_widget</span><span class="w"> </span><span class="o">*</span><span class="nf">add</span><span class="p">(</span><span class="n">tui_widget</span><span class="w"> </span><span class="o">*</span><span class="n">widget</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">tui_fmt</span><span class="o">&gt;</span><span class="w"> </span><span class="n">attrs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">attrs</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">widget</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">tui_widget</span><span class="w"> </span><span class="o">*</span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">widget</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">attr</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">attrs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// parse the proxy name in tui_fmt attr</span>
+<span class="w">    </span><span class="n">tui_fmt</span><span class="w"> </span><span class="n">proxy_name</span><span class="p">(</span><span class="n">strtok</span><span class="p">(</span><span class="n">attr</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">));</span>
+
+<span class="w">    </span><span class="c1">// parse the attributes in tui_fmt attr</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">tui_fmt</span><span class="o">&gt;</span><span class="w"> </span><span class="n">curr_args</span><span class="p">{};</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">attr_str</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">attr_str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strtok</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">curr_args</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">tui_fmt</span><span class="p">(</span><span class="n">attr_str</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">proxy_add</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="w"> </span><span class="n">proxy_name</span><span class="p">(),</span><span class="w"> </span><span class="n">curr_args</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>观察这段代码，我们可以注意到：</p>
+<ul>
+<li>性质字符串以空格分割的第一个 token 是代理名称（用于索引代理），其后的 token 被装进列表作为参数传给代理组件的构造函数。</li>
+<li>写在前面的性质转化成的代理会被嵌套在内层。</li>
+<li>代理名和实际代理组件构造函数的映射关系被存在 <code>proxy_create_list</code> 中。</li>
+</ul>
+<p>这个 <code>proxy_create_list</code> 是怎么维护的呢？</p>
+<p>具体原理比较复杂，我们直接讲如何把一个代理组件类的代理名-构造函数对注册入该表。</p>
+<p>以 <code>tui_border_proxy</code> 为例，只需在类定义时添加：</p>
+<div class="highlight"><pre><span></span><code><span class="n">factory_reg</span><span class="p">(</span><span class="n">tui_border_proxy</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;border&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>在类的实现文件 <code>*.cpp</code> 中添加：</p>
+<div class="highlight"><pre><span></span><code><span class="n">factory_reg_impl</span><span class="p">(</span><span class="n">tui_border_proxy</span><span class="p">);</span>
+</code></pre></div>
+<p>这样就可以通过在 <code>set_attrs</code> 时传入 <code>"border [arg1 arg2 ...]"</code> 来为组件创建 <code>tui_border_proxy</code> 代理组件以实现边框性质了。</p>
+<h3 id="_16">边框代理实现</h3>
+<p>我们先从原来的边框代理实现讲起，然后再提供实现新的边框代理的思路。</p>
+<h4 id="_17">构造函数</h4>
+<p>首先我们需要在构造函数中根据传入的参数初始化边框代理组件。</p>
+<p>这里需要解释一下目前实现的初始化逻辑（注意到边框组件必须比被代理组件大一圈）：</p>
+<ul>
+<li>如果有 <code>shrink</code> 参数，则将被代理组件缩小一圈。</li>
+<li>如果没有 <code>shrink</code> 参数，则将自己放大一圈（默认和被代理组件一样大）。<ul>
+<li>注意如果本组件被作为窗口注册显示，需要调用 <code>ui</code> 模块的接口改变自己的大小。否则 <code>full_map</code> 不会被正确地更新。</li>
+</ul>
+</li>
+</ul>
+<details class="tip" open="open">
+<summary>批判性思考：<code>full_map</code> 的问题</summary>
+<p>这里可以看出，<code>full_map</code> 不是个特别好的机制：每当被注册的窗口改变大小的时候，都要重新维护 <code>full_map</code>，因此需要频繁地特判。</p>
+<p>如果我们在组件的 <code>on_area_change</code> 函数中规定这种特判呢？</p>
+<ul>
+<li>首先，这会导致 <code>on_area_change</code> 的实现和基类实现耦合。</li>
+<li>其次，如果在其中特判 <code>instantiated</code> 来调用 <code>tui_adjust_area()</code> 接口，它又会调用组件的 <code>reset_area()</code> 接口，该接口又会调用 <code>on_area_change()</code></li>
+</ul>
+<p><code>full_map</code> 本质来说是对 <code>tui_look_widget()</code> 结果的缓存，在下一阶段代码中我们可能直接删除它。</p>
+<p>在删除它以后，<code>tui_adjust_area()</code> 本身甚至也没有必要存在了，而是可以直接被 <code>tui_widget</code> 的 <code>reset_area()</code> 替代。</p>
+</details>
+<p>原来的实现是：</p>
+<div class="highlight"><pre><span></span><code><span class="n">tui_border_proxy</span><span class="o">::</span><span class="n">tui_border_proxy</span><span class="p">(</span>
+<span class="w">  </span><span class="n">tui_widget</span><span class="w"> </span><span class="o">*</span><span class="n">content</span><span class="p">,</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">tui_fmt</span><span class="o">&gt;</span><span class="w"> </span><span class="n">args</span>
+<span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">tui_widget_proxy</span><span class="p">(</span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;shrink&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">content</span><span class="o">-&gt;</span><span class="n">reset_area</span><span class="p">(</span><span class="n">tui_rect</span><span class="p">(</span>
+<span class="w">      </span><span class="n">content</span><span class="o">-&gt;</span><span class="n">area</span><span class="p">.</span><span class="n">head</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tui_point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span>
+<span class="w">      </span><span class="n">content</span><span class="o">-&gt;</span><span class="n">area</span><span class="p">.</span><span class="n">tail</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tui_point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">));</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">instaniated</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">tui_adjust_widget</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">tui_rect</span><span class="p">(</span>
+<span class="w">        </span><span class="n">content</span><span class="o">-&gt;</span><span class="n">area</span><span class="p">.</span><span class="n">head</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tui_point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span>
+<span class="w">        </span><span class="n">content</span><span class="o">-&gt;</span><span class="n">area</span><span class="p">.</span><span class="n">tail</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tui_point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">      </span><span class="p">),</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">area</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tui_rect</span><span class="p">(</span>
+<span class="w">        </span><span class="n">content</span><span class="o">-&gt;</span><span class="n">area</span><span class="p">.</span><span class="n">head</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tui_point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span>
+<span class="w">        </span><span class="n">content</span><span class="o">-&gt;</span><span class="n">area</span><span class="p">.</span><span class="n">tail</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tui_point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">      </span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+
+<span class="w">  </span><span class="n">tui_assert</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">area</span><span class="p">.</span><span class="n">isvalid</span><span class="p">());</span>
+<span class="w">  </span><span class="n">strcpy</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BORDER_PROXY&quot;</span><span class="p">);</span>
+<span class="p">}</span><span class="w">    </span>
+</code></pre></div>
+<h2 id="_18">后续任务预告 &amp; 建议</h2>
 <ul>
 <li>第一阶段：实现窗口框架和布局。推荐 1/5 前完成。</li>
 <li>第二阶段：实现各种小组件和 <code>proxy</code> 类。推荐 1/10 前完成。</li>
