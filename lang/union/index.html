@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#定义联合体" class="md-skip">
           跳转至
         </a>
       
@@ -1263,7 +1263,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#定义联合体" class="md-nav__link">
     <span class="md-ellipsis">
       定义联合体
     </span>
@@ -1272,7 +1272,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#访问修改成员元素" class="md-nav__link">
     <span class="md-ellipsis">
       访问/修改成员元素
     </span>
@@ -2564,7 +2564,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#定义联合体" class="md-nav__link">
     <span class="md-ellipsis">
       定义联合体
     </span>
@@ -2573,7 +2573,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#访问修改成员元素" class="md-nav__link">
     <span class="md-ellipsis">
       访问/修改成员元素
     </span>
@@ -2603,7 +2603,7 @@
 
 <p><strong>联合体</strong>（union）是特殊的类类型，它在一个时刻只能保有其一个非静态数据成员。</p>
 <p>联合体在 2023 年正式被加入 NOI 大纲入门级中。</p>
-<h2 id="_1">定义联合体</h2>
+<h2 id="定义联合体">定义联合体<a class="headerlink" href="#定义联合体" title="Permanent link">&para;</a></h2>
 <p>联合体声明的类说明符与类或 <a href="../struct/">结构体</a> 的声明相似：</p>
 <div class="highlight"><pre><span></span><code><span class="k">union</span><span class="w"> </span><span class="nc">MyUnion</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
@@ -2611,7 +2611,7 @@
 <span class="p">}</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
 </code></pre></div>
 <p>联合体的定义与结构体类似。按照上述定义，<code>MyUnion</code> 同样可以当作一种自定义类型使用。名称 <code>MyUnion</code> 可以省略。</p>
-<h2 id="_2">访问/修改成员元素</h2>
+<h2 id="访问修改成员元素">访问/修改成员元素<a class="headerlink" href="#访问修改成员元素" title="Permanent link">&para;</a></h2>
 <p>与结构体类似，同样可以使用 <code>变量名.成员名</code> 进行访问。</p>
 <p>联合体所占用的内存空间大小 <strong>不小于</strong> 其最大的成员的大小，所有成员 <strong>共用内存空间与地址</strong>。当一个成员被赋值，由于内存共享，该联合体中的其他成员都会被覆盖。即同一时刻联合体中只能保存一个成员的值。</p>
 <p>联合体的更多用法可以参见 <a href="https://zh.cppreference.com/w/cpp/language/union">cppreference：联合体声明</a>。</p>

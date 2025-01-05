@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cpl" class="md-skip">
+        <a href="#从-cpl-语言的定义说起" class="md-skip">
           跳转至
         </a>
       
@@ -1803,7 +1803,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#cpl" class="md-nav__link">
+  <a href="#从-cpl-语言的定义说起" class="md-nav__link">
     <span class="md-ellipsis">
       从 CPL 语言的定义说起
     </span>
@@ -1812,7 +1812,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#c-c11" class="md-nav__link">
+  <a href="#c-和-c11-以前" class="md-nav__link">
     <span class="md-ellipsis">
       C 和 C++11 以前
     </span>
@@ -1821,7 +1821,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#c11" class="md-nav__link">
+  <a href="#c11-开始" class="md-nav__link">
     <span class="md-ellipsis">
       C++11 开始
     </span>
@@ -1830,7 +1830,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#c17" class="md-nav__link">
+  <a href="#c17-带来的新变化" class="md-nav__link">
     <span class="md-ellipsis">
       C++17 带来的新变化
     </span>
@@ -1839,7 +1839,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#参考文献与推荐阅读" class="md-nav__link">
     <span class="md-ellipsis">
       参考文献与推荐阅读
     </span>
@@ -2589,7 +2589,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#cpl" class="md-nav__link">
+  <a href="#从-cpl-语言的定义说起" class="md-nav__link">
     <span class="md-ellipsis">
       从 CPL 语言的定义说起
     </span>
@@ -2598,7 +2598,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#c-c11" class="md-nav__link">
+  <a href="#c-和-c11-以前" class="md-nav__link">
     <span class="md-ellipsis">
       C 和 C++11 以前
     </span>
@@ -2607,7 +2607,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#c11" class="md-nav__link">
+  <a href="#c11-开始" class="md-nav__link">
     <span class="md-ellipsis">
       C++11 开始
     </span>
@@ -2616,7 +2616,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#c17" class="md-nav__link">
+  <a href="#c17-带来的新变化" class="md-nav__link">
     <span class="md-ellipsis">
       C++17 带来的新变化
     </span>
@@ -2625,7 +2625,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#参考文献与推荐阅读" class="md-nav__link">
     <span class="md-ellipsis">
       参考文献与推荐阅读
     </span>
@@ -2659,10 +2659,10 @@
 <summary>关于名词的翻译</summary>
 <p>type 和 category 都可以翻译为「类型」或「类别」，但为了区分两者，下文中统一将 type 翻译为「类型」，category 翻译为「类别」。</p>
 </details>
-<h2 id="cpl">从 CPL 语言的定义说起</h2>
+<h2 id="从-cpl-语言的定义说起">从 CPL 语言的定义说起<a class="headerlink" href="#从-cpl-语言的定义说起" title="Permanent link">&para;</a></h2>
 <p>左值与右值的概念最早出现在 C 语言的祖先语言：CPL。</p>
 <p>在 CPL 的定义中，lvalue 意为 left-hand side value，即能够出现在赋值运算符（等号）左侧的值，右值的定义亦然。</p>
-<h2 id="c-c11">C 和 C++11 以前</h2>
+<h2 id="c-和-c11-以前">C 和 C++11 以前<a class="headerlink" href="#c-和-c11-以前" title="Permanent link">&para;</a></h2>
 <p>C 语言沿用了相似的分类方法，但左右值的判断标准已经与赋值运算符无关。在新的定义中，lvalue 意为 locate value，即能进行取地址运算 (<code>&amp;</code>) 的值。</p>
 <p>可以这么理解：左值是有内存地址的对象，而右值只是一个中间计算结果（虽然编译器往往需要在内存中分配地址来储存这个值，但这个内存地址是无法被程序员感知的，所以可以认为它不存在）。中间计算结果就意味着这个值马上就没用了，以后不会再访问它。</p>
 <p>比如在 <code>int a = 0;</code> 这段代码中，<code>a</code> 就是一个左值，而 <code>0</code> 是一个右值。</p>
@@ -2674,7 +2674,7 @@
 <li><strong>数组</strong>：数组名就是数组首个元素的指针这种说法似乎误导了很多人，但这个说法显然是错误的，对数组进行取地址是可以编译的。数组名可以隐式的退化成首个元素的指针，这才是右值。</li>
 </ul>
 </details>
-<h2 id="c11">C++11 开始</h2>
+<h2 id="c11-开始">C++11 开始<a class="headerlink" href="#c11-开始" title="Permanent link">&para;</a></h2>
 <p>从 C++11 开始，为了配合移动语义，值的类别就不是左值右值这么简单了。</p>
 <p>考虑一个简单的场景：</p>
 <div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">{...};</span>
@@ -2723,7 +2723,7 @@
 </tbody>
 </table>
 <p>注意不拥有身份就意味着这个对象以后无法被访问，这样的对象显然是可以被移动的，所以不存在不拥有身份不可移动的值。</p>
-<h2 id="c17">C++17 带来的新变化</h2>
+<h2 id="c17-带来的新变化">C++17 带来的新变化<a class="headerlink" href="#c17-带来的新变化" title="Permanent link">&para;</a></h2>
 <p>从拷贝到移动提升了不少速度，那么我们是否能够优化的更彻底一点，把移动的开销都省去呢？</p>
 <p>考虑这样的代码：</p>
 <div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">make_vector</span><span class="p">(...)</span><span class="w"> </span><span class="p">{</span>
@@ -2748,7 +2748,7 @@
 <p>不，C++11 的值类别已经够复杂了。我们意识到在 C++11 的标准下，亡值和纯右值都是可以移动的，那么就可以在这两种类别上做文章。</p>
 <p>C++17 以后，纯右值不再能移动，但可以隐式地转变为亡值。对于纯右值用于初始化的情况下，可以省略拷贝，而其他不能省略的情况下，隐式转换为亡值进行移动。</p>
 <p>所以在 C++17 之后的值类别，被更为整齐的划分为泛左值与纯右值两大块，右值存在的意义被削弱。这样的改变某种程度上简化了整个值类别体系。</p>
-<h2 id="_1">参考文献与推荐阅读</h2>
+<h2 id="参考文献与推荐阅读">参考文献与推荐阅读<a class="headerlink" href="#参考文献与推荐阅读" title="Permanent link">&para;</a></h2>
 <ol>
 <li><a href="https://en.cppreference.com/w/cpp/language/value_category">Value categories</a></li>
 <li><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0135r1.html">Wording for guaranteed copy elision through simplified value categories</a></li>

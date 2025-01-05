@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#基础使用" class="md-skip">
           跳转至
         </a>
       
@@ -1500,7 +1500,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#基础使用" class="md-nav__link">
     <span class="md-ellipsis">
       基础使用
     </span>
@@ -1509,7 +1509,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#分类" class="md-nav__link">
     <span class="md-ellipsis">
       分类
     </span>
@@ -1518,7 +1518,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#相关函数" class="md-nav__link">
     <span class="md-ellipsis">
       相关函数
     </span>
@@ -2573,7 +2573,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#基础使用" class="md-nav__link">
     <span class="md-ellipsis">
       基础使用
     </span>
@@ -2582,7 +2582,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#分类" class="md-nav__link">
     <span class="md-ellipsis">
       分类
     </span>
@@ -2591,7 +2591,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#相关函数" class="md-nav__link">
     <span class="md-ellipsis">
       相关函数
     </span>
@@ -2620,7 +2620,7 @@
   <h1>迭代器</h1>
 
 <p>在 STL 中，迭代器（Iterator）用来访问和检查 STL 容器中元素的对象，它的行为模式和指针类似，但是它封装了一些有效性检查，并且提供了统一的访问格式。类似的概念在其他很多高级语言中都存在，如 Python 的 <code>__iter__</code> 函数，C# 的 <code>IEnumerator</code>。</p>
-<h2 id="_1">基础使用</h2>
+<h2 id="基础使用">基础使用<a class="headerlink" href="#基础使用" title="Permanent link">&para;</a></h2>
 <p>迭代器听起来比较晦涩，其实迭代器本身可以看作一个数据指针。迭代器主要支持两个运算符：自增 (<code>++</code>) 和解引用（单目 <code>*</code> 运算符），其中自增用来移动迭代器，解引用可以获取或修改它指向的元素。</p>
 <p>指向某个 <a href="../container/">STL 容器</a>  <code>container</code> 中元素的迭代器的类型一般为 <code>container::iterator</code>。</p>
 <p>迭代器可以用来遍历容器，例如，下面两个 for 循环的效果是一样的：</p>
@@ -2637,7 +2637,7 @@
 <summary><code>auto</code> 在竞赛中的使用 </summary>
 <p>大部分选手都喜欢使用 <code>auto</code> 来代替繁琐的迭代器声明。根据 2021 年 9 月发布的 <a href="https://www.noi.cn/xw/2021-09-01/735729.shtml">关于 NOI 系列活动中编程语言使用限制的补充说明</a>，NOI 系列比赛（包括 CSP J/S）在评测时将使用 <strong>C++14</strong>，这个版本已经支持了 <code>auto</code> 关键字。</p>
 </details>
-<h2 id="_2">分类</h2>
+<h2 id="分类">分类<a class="headerlink" href="#分类" title="Permanent link">&para;</a></h2>
 <p>在 STL 的定义中，迭代器根据其支持的操作依次分为以下几类：</p>
 <ul>
 <li>InputIterator（输入迭代器）：只要求支持拷贝、自增和解引访问。</li>
@@ -2654,7 +2654,7 @@
 <p>其实这个「分类」并不互斥——一个「类别」是可以包含另一个「类别」的。例如，在要求使用向前迭代器的地方，同样可以使用双向迭代器。</p>
 <p>不同的 <a href="../container/">STL 容器</a> 支持的迭代器类型不同，在使用时需要留意。</p>
 <p>指针满足随机访问迭代器的所有要求，可以当作随机访问迭代器使用。</p>
-<h2 id="_3">相关函数</h2>
+<h2 id="相关函数">相关函数<a class="headerlink" href="#相关函数" title="Permanent link">&para;</a></h2>
 <p>很多 <a href="../algorithm/">STL 函数</a> 都使用迭代器作为参数。</p>
 <p>可以使用 <code>std::advance(it, n)</code> 将迭代器 <code>it</code> 向后移动 <code>n</code> 步；若 <code>n</code> 为负数，则对应向前移动。迭代器必须满足双向迭代器，否则行为未定义。</p>
 <p>在 C++11 以后可以使用 <code>std::next(it)</code> 获得向前迭代器 <code>it</code> 的后继（此时迭代器 <code>it</code> 不变），<code>std::next(it, n)</code> 获得向前迭代器 <code>it</code> 的第 <code>n</code> 个后继。</p>

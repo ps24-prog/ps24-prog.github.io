@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#__gnu_pbds-tree" class="md-skip">
+        <a href="#__gnu_pbds--tree" class="md-skip">
           跳转至
         </a>
       
@@ -2493,7 +2493,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#__gnu_pbds-tree" class="md-nav__link">
+  <a href="#__gnu_pbds--tree" class="md-nav__link">
     <span class="md-ellipsis">
       __gnu_pbds :: tree
     </span>
@@ -2502,7 +2502,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#模板形参" class="md-nav__link">
     <span class="md-ellipsis">
       模板形参
     </span>
@@ -2511,7 +2511,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#构造方式" class="md-nav__link">
     <span class="md-ellipsis">
       构造方式
     </span>
@@ -2520,7 +2520,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#成员函数" class="md-nav__link">
     <span class="md-ellipsis">
       成员函数
     </span>
@@ -2529,7 +2529,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#示例" class="md-nav__link">
     <span class="md-ellipsis">
       示例
     </span>
@@ -2557,7 +2557,7 @@
 
   <h1>Tree</h1>
 
-<h2 id="__gnu_pbds-tree"><code>__gnu_pbds :: tree</code></h2>
+<h2 id="__gnu_pbds--tree"><code>__gnu_pbds :: tree</code><a class="headerlink" href="#__gnu_pbds--tree" title="Permanent link">&para;</a></h2>
 <p>附：<a href="https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/tree_based_containers.html">官方文档地址</a></p>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ext/pb_ds/assoc_container.hpp&gt;</span><span class="c1">  // 因为tree定义在这里 所以需要包含这个头文件</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ext/pb_ds/tree_policy.hpp&gt;</span>
@@ -2566,7 +2566,7 @@
 <span class="w">                  </span><span class="n">Node_Update</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">null_tree_node_update</span><span class="p">,</span>
 <span class="w">                  </span><span class="n">Allocator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">allocator</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span>
 </code></pre></div>
-<h2 id="_1">模板形参</h2>
+<h2 id="模板形参">模板形参<a class="headerlink" href="#模板形参" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>Key</code>: 储存的元素类型，如果想要存储多个相同的 <code>Key</code> 元素，则需要使用类似于 <code>std::pair</code> 和 <code>struct</code> 的方法，并配合使用 <code>lower_bound</code> 和 <code>upper_bound</code> 成员函数进行查找</li>
 <li><code>Mapped</code>: 映射规则（Mapped-Policy）类型，如果要指示关联容器是 <strong>集合</strong>，类似于存储元素在 <code>std::set</code> 中，此处填入 <code>null_type</code>，低版本 <code>g++</code> 此处为 <code>null_mapped_type</code>；如果要指示关联容器是 <strong>带值的集合</strong>，类似于存储元素在 <code>std::map</code> 中，此处填入类似于 <code>std::map&lt;Key, Value&gt;</code> 的 <code>Value</code> 类型</li>
@@ -2580,13 +2580,13 @@
 <li><code>Node_Update</code>：用于更新节点的策略，默认使用 <code>null_node_update</code>，若要使用 <code>order_of_key</code> 和 <code>find_by_order</code> 方法，需要使用 <code>tree_order_statistics_node_update</code></li>
 <li><code>Allocator</code>：空间分配器类型</li>
 </ul>
-<h2 id="_2">构造方式</h2>
+<h2 id="构造方式">构造方式<a class="headerlink" href="#构造方式" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="n">__gnu_pbds</span><span class="o">::</span><span class="n">tree</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">__gnu_pbds</span><span class="o">::</span><span class="n">null_type</span><span class="p">,</span>
 <span class="w">                 </span><span class="n">std</span><span class="o">::</span><span class="n">less</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">__gnu_pbds</span><span class="o">::</span><span class="n">rb_tree_tag</span><span class="p">,</span>
 <span class="w">                 </span><span class="n">__gnu_pbds</span><span class="o">::</span><span class="n">tree_order_statistics_node_update</span><span class="o">&gt;</span>
 <span class="w">    </span><span class="n">trr</span><span class="p">;</span>
 </code></pre></div>
-<h2 id="_3">成员函数</h2>
+<h2 id="成员函数">成员函数<a class="headerlink" href="#成员函数" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>insert(x)</code>：向树中插入一个元素 x，返回 <code>std::pair&lt;point_iterator, bool&gt;</code>。</li>
 <li><code>erase(x)</code>：从树中删除一个元素/迭代器 x，返回一个 <code>bool</code> 表明是否删除成功。</li>
@@ -2599,7 +2599,7 @@
 <li><code>empty()</code>：返回是否为空。</li>
 <li><code>size()</code>：返回大小。</li>
 </ul>
-<h2 id="_4">示例</h2>
+<h2 id="示例">示例<a class="headerlink" href="#示例" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="c1">// Common Header Simple over C++11</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>

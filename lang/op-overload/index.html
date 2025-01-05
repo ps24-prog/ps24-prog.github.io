@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#限制" class="md-skip">
           跳转至
         </a>
       
@@ -1824,7 +1824,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#限制" class="md-nav__link">
     <span class="md-ellipsis">
       限制
     </span>
@@ -1833,7 +1833,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#实现" class="md-nav__link">
     <span class="md-ellipsis">
       实现
     </span>
@@ -1843,7 +1843,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#函数调用运算符" class="md-nav__link">
     <span class="md-ellipsis">
       函数调用运算符
     </span>
@@ -1852,7 +1852,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#自增自减运算符" class="md-nav__link">
     <span class="md-ellipsis">
       自增自减运算符
     </span>
@@ -1861,7 +1861,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#比较运算符" class="md-nav__link">
     <span class="md-ellipsis">
       比较运算符
     </span>
@@ -2595,7 +2595,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#限制" class="md-nav__link">
     <span class="md-ellipsis">
       限制
     </span>
@@ -2604,7 +2604,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#实现" class="md-nav__link">
     <span class="md-ellipsis">
       实现
     </span>
@@ -2614,7 +2614,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#函数调用运算符" class="md-nav__link">
     <span class="md-ellipsis">
       函数调用运算符
     </span>
@@ -2623,7 +2623,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#自增自减运算符" class="md-nav__link">
     <span class="md-ellipsis">
       自增自减运算符
     </span>
@@ -2632,7 +2632,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#比较运算符" class="md-nav__link">
     <span class="md-ellipsis">
       比较运算符
     </span>
@@ -2667,7 +2667,7 @@
 
 <p>重载运算符是通过对运算符的重新定义，使得其支持特定数据类型的运算操作。重载运算符是重载函数的特殊情况。</p>
 <p>C++ 自带的运算符，最初只定义了一些基本类型的运算规则。当我们要在用户自定义的数据类型上使用这些运算符时，就需要定义运算符在这些特定类型上的运算方式。</p>
-<h2 id="_1">限制</h2>
+<h2 id="限制">限制<a class="headerlink" href="#限制" title="Permanent link">&para;</a></h2>
 <p>重载运算符存在如下限制：</p>
 <ul>
 <li>只能对现有的运算符进行重载，不能自行定义新的运算符。</li>
@@ -2675,12 +2675,12 @@
 <li>重载后的运算符，其运算优先级，运算操作数，结合方向不得改变。</li>
 <li>对 <code>&amp;&amp;</code>（逻辑与）和 <code>||</code>（逻辑或）的重载失去短路求值。</li>
 </ul>
-<h2 id="_2">实现</h2>
+<h2 id="实现">实现<a class="headerlink" href="#实现" title="Permanent link">&para;</a></h2>
 <p>重载运算符分为两种情况，重载为成员函数或非成员函数。</p>
 <p>当重载为成员函数时，因为隐含一个指向当前成员的 <code>this</code> 指针作为参数，此时函数的参数个数与运算操作数相比少一个。</p>
 <p>而当重载为非成员函数时，函数的参数个数与运算操作数相同。</p>
 <p>下面将给出几个重载运算符的示例。</p>
-<h3 id="_3">函数调用运算符</h3>
+<h3 id="函数调用运算符">函数调用运算符<a class="headerlink" href="#函数调用运算符" title="Permanent link">&para;</a></h3>
 <p>函数调用运算符 <code>()</code> 只能重载为成员函数。通过对一个类重载 <code>()</code> 运算符，可以使该类的对象能像函数一样调用。</p>
 <p>重载 <code>()</code> 运算符的一个常见应用是，将重载了 <code>()</code> 运算符的结构体作为自定义比较函数传入优先队列等 STL 容器中。</p>
 <p>下面就是一个例子：给出 <span class="arithmatex">\(n\)</span> 个学生的姓名和分数，按分数降序排序，分数相同者按姓名字典序升序排序，输出排名最靠前的人的姓名和分数。</p>
@@ -2715,7 +2715,7 @@
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="_4">自增自减运算符</h3>
+<h3 id="自增自减运算符">自增自减运算符<a class="headerlink" href="#自增自减运算符" title="Permanent link">&para;</a></h3>
 <p>自增自减运算符分为两类，前置和后置。为了能将两类运算符区别开来，对于后置自增自减运算符，重载的时候需要添加一个类型为 <code>int</code> 的空置形参。</p>
 <p>另外一点是，内置的自增自减运算符中，前置的运算符返回的是引用，而后置的运算符返回的是值。虽然重载后的运算符不必遵循这一限制，不过在语义上，仍然期望重载的运算符与内置的运算符在返回值的类型上保持一致。</p>
 <p>因此，对于类型 T，典型的重载自增运算符的定义如下：</p>
@@ -2740,7 +2740,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="_5">比较运算符</h3>
+<h3 id="比较运算符">比较运算符<a class="headerlink" href="#比较运算符" title="Permanent link">&para;</a></h3>
 <p>在 <code>std::sort</code> 和一些 STL 容器中，需要用到 <code>&lt;</code> 运算符。在使用自定义类型时，我们需要手动重载。</p>
 <p>还是以讲函数调用运算符时举的例子说起，如果我们重载比较运算符，实现代码是这样的（主函数因为没有改动就略去了）：</p>
 <div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">student</span><span class="w"> </span><span class="p">{</span>

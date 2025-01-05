@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#理论环境配置" class="md-skip">
           跳转至
         </a>
       
@@ -1997,7 +1997,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#tex-live" class="md-nav__link">
+  <a href="#安装-tex-live" class="md-nav__link">
     <span class="md-ellipsis">
       安装 Tex Live
     </span>
@@ -2006,7 +2006,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#vscode" class="md-nav__link">
+  <a href="#结合-vscode" class="md-nav__link">
     <span class="md-ellipsis">
       结合 VSCode
     </span>
@@ -2616,7 +2616,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#tex-live" class="md-nav__link">
+  <a href="#安装-tex-live" class="md-nav__link">
     <span class="md-ellipsis">
       安装 Tex Live
     </span>
@@ -2625,7 +2625,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#vscode" class="md-nav__link">
+  <a href="#结合-vscode" class="md-nav__link">
     <span class="md-ellipsis">
       结合 VSCode
     </span>
@@ -2683,7 +2683,7 @@
   
 
 
-<h1 id="_1">理论环境配置</h1>
+<h1 id="理论环境配置">理论环境配置<a class="headerlink" href="#理论环境配置" title="Permanent link">&para;</a></h1>
 <p>本页面会提供一些理论部分需要用到的编程环境的配置指南。</p>
 <p><strong>本指南是非官方的，仅供参考。</strong></p>
 <p>本页面的所有环境配置都基于 Windows 的 MSYS2 环境，在<a href="../quickstart/#msys2">上手指南</a>中已经介绍过。</p>
@@ -2696,8 +2696,8 @@
 <p>请使用 <a href="https://brew.sh/">homebrew</a> 安装这些软件/工具。</p>
 </div>
 <p>其实本页提到的绝大部分包你可以在 <a href="https://packages.msys2.org/">MSYS2 包列表</a>找到，而不用我来列出。</p>
-<h2 id="latex">Latex</h2>
-<h3 id="tex-live">安装 Tex Live</h3>
+<h2 id="latex">Latex<a class="headerlink" href="#latex" title="Permanent link">&para;</a></h2>
+<h3 id="安装-tex-live">安装 Tex Live<a class="headerlink" href="#安装-tex-live" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>pacman<span class="w"> </span>-S<span class="w"> </span>mingw-w64-x86_64-texlive-full
 </code></pre></div>
 <p>要验证是否安装成功，输入 <code>xelatex --version</code>（后面同理，不再重复）。</p>
@@ -2706,7 +2706,7 @@
 <summary>为什么要用 xelatex</summary>
 <p>因为它对中文的支持最好，如果换用其他的编译器可能会在你输入中文的时候出现编译错误。</p>
 </details>
-<h3 id="vscode">结合 VSCode</h3>
+<h3 id="结合-vscode">结合 VSCode<a class="headerlink" href="#结合-vscode" title="Permanent link">&para;</a></h3>
 <p>现在你可以使用 Tex Live 自带的 IDE 来进行编辑和编译 <code>.tex</code> 文件。但我不推荐你这样做，而是使用安装了 Latex Workshop 拓展的 VSCode 来进行编辑和编译。</p>
 <p>在 VSCode 中安装该拓展后，你需要对其进行配置。</p>
 <p>在 <code>Settings.json</code> 中，增加一个 <code>tool</code>：</p>
@@ -2749,14 +2749,14 @@
 <p>例如，Latex Workshop 的文档就在<a href="https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile">此处</a>。</p>
 <p>当然，你也可以在中文互联网上诸如<a href="https://zhuanlan.zhihu.com/p/58811994">「配置 VSCode + Tex Live 2020 环境」</a>的帖子上找到现成的配置，但是它们往往容易出现少量的不兼容问题（往往是因为路径硬编码，或者它们本身就是错的），而使得你一头雾水，事倍功半。<del>别问我怎么知道</del></p>
 </details>
-<h2 id="coq">Coq</h2>
+<h2 id="coq">Coq<a class="headerlink" href="#coq" title="Permanent link">&para;</a></h2>
 <p>Windows 用户可以在<a href="https://coq.inria.fr/download">官网</a>下载 coq（无法通过包管理器安装，需要自己配置环境变量）。</p>
 <p>其他系统用户可以在<a href="https://repology.org/project/coq/versions">这里</a>查看你们的包管理器中 coq 的包名。</p>
 <p>在<a href="https://coq.inria.fr/refman/index.html">这里</a>阅读 coq 的教程。</p>
-<h2 id="haskell">Haskell</h2>
+<h2 id="haskell">Haskell<a class="headerlink" href="#haskell" title="Permanent link">&para;</a></h2>
 <p>Haskell 不能通过 MSYS2 的包管理器安装。相反 Windows 平台的 Haskell 环境通常有一个自己的包管理器并集成了 MSYS2（类似 Git for Windows），如果复用你自己的 MSYS2 可能会导致和 pacman 安装的其他包冲突。</p>
 <p>具体的配置流程详见<a href="https://zhuanlan.zhihu.com/p/559892399">这篇帖子</a>。</p>
-<h2 id="prolog">Prolog</h2>
+<h2 id="prolog">Prolog<a class="headerlink" href="#prolog" title="Permanent link">&para;</a></h2>
 <p>幸运的是 Swi-prolog 在 MSYS2 包仓库中存在，因此我们执行：</p>
 <div class="highlight"><pre><span></span><code>pacman<span class="w"> </span>-S<span class="w"> </span>mingw-w64-x86_64-swi-prolog
 </code></pre></div>

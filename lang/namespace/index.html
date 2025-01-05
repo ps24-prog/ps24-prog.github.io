@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#概述" class="md-skip">
           跳转至
         </a>
       
@@ -1782,7 +1782,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#概述" class="md-nav__link">
     <span class="md-ellipsis">
       概述
     </span>
@@ -1791,7 +1791,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#声明" class="md-nav__link">
     <span class="md-ellipsis">
       声明
     </span>
@@ -1800,7 +1800,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#using" class="md-nav__link">
+  <a href="#using-指令" class="md-nav__link">
     <span class="md-ellipsis">
       using 指令
     </span>
@@ -1809,7 +1809,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#应用" class="md-nav__link">
     <span class="md-ellipsis">
       应用
     </span>
@@ -2580,7 +2580,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#概述" class="md-nav__link">
     <span class="md-ellipsis">
       概述
     </span>
@@ -2589,7 +2589,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#声明" class="md-nav__link">
     <span class="md-ellipsis">
       声明
     </span>
@@ -2598,7 +2598,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#using" class="md-nav__link">
+  <a href="#using-指令" class="md-nav__link">
     <span class="md-ellipsis">
       using 指令
     </span>
@@ -2607,7 +2607,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#应用" class="md-nav__link">
     <span class="md-ellipsis">
       应用
     </span>
@@ -2635,10 +2635,10 @@
 
   <h1>命名空间</h1>
 
-<h2 id="_1">概述</h2>
+<h2 id="概述">概述<a class="headerlink" href="#概述" title="Permanent link">&para;</a></h2>
 <p>C++ 的 <strong>命名空间</strong> 机制可以用来解决复杂项目中名字冲突的问题。</p>
 <p>举个例子：C++ 标准库的所有内容均定义在 <code>std</code> 命名空间中，如果你定义了一个叫 <code>cin</code> 的变量，则可以通过 <code>cin</code> 来访问你定义的 <code>cin</code> 变量，通过 <code>std::cin</code> 访问标准库的 <code>cin</code> 对象，而不用担心产生冲突。</p>
-<h2 id="_2">声明</h2>
+<h2 id="声明">声明<a class="headerlink" href="#声明" title="Permanent link">&para;</a></h2>
 <p>下面的代码声明了一个名字叫 <code>A</code> 的命名空间：</p>
 <div class="highlight"><pre><span></span><code><span class="k">namespace</span><span class="w"> </span><span class="nn">A</span><span class="w"> </span><span class="p">{</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">cnt</span><span class="p">;</span>
@@ -2666,7 +2666,7 @@
 <span class="w">  </span><span class="n">A</span><span class="o">::</span><span class="n">B</span><span class="o">::</span><span class="n">f</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="using"><code>using</code> 指令</h2>
+<h2 id="using-指令"><code>using</code> 指令<a class="headerlink" href="#using-指令" title="Permanent link">&para;</a></h2>
 <p>声明了命名空间之后，如果在命名空间外部访问命名空间内部的成员，需要在成员名前面加上 <code>命名空间::</code>。</p>
 <p>有没有什么比较方便的方法能让我们直接通过成员名访问命名空间内的成员呢？答案是肯定的。我们可以使用 <code>using</code> 指令。</p>
 <p><code>using</code> 指令有如下两种形式：</p>
@@ -2705,7 +2705,7 @@
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="_3">应用</h2>
+<h2 id="应用">应用<a class="headerlink" href="#应用" title="Permanent link">&para;</a></h2>
 <p>在一些具有多个子任务的问题中，我们可以对每个子任务各开一个命名空间，在其中定义我们解决该子任务所需要的变量与函数，这样各个子任务间互不干扰，会在一定程度上方便调试，也会改善程序的可读性。</p>
 
 

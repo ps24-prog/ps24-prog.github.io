@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lambda" class="md-skip">
+        <a href="#lambda-表达式" class="md-skip">
           跳转至
         </a>
       
@@ -1908,7 +1908,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#lambda" class="md-nav__link">
+  <a href="#lambda-表达式" class="md-nav__link">
     <span class="md-ellipsis">
       Lambda 表达式
     </span>
@@ -1918,7 +1918,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#capture" class="md-nav__link">
+  <a href="#capture-捕获子句" class="md-nav__link">
     <span class="md-ellipsis">
       capture 捕获子句
     </span>
@@ -1927,7 +1927,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#parameters" class="md-nav__link">
+  <a href="#parameters-参数列表" class="md-nav__link">
     <span class="md-ellipsis">
       parameters 参数列表
     </span>
@@ -1936,7 +1936,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#mutable" class="md-nav__link">
+  <a href="#mutable-可变规范" class="md-nav__link">
     <span class="md-ellipsis">
       mutable 可变规范
     </span>
@@ -1945,7 +1945,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#return-type" class="md-nav__link">
+  <a href="#return-type-返回类型" class="md-nav__link">
     <span class="md-ellipsis">
       return-type 返回类型
     </span>
@@ -1954,7 +1954,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#statement-lambda" class="md-nav__link">
+  <a href="#statement-lambda-主体" class="md-nav__link">
     <span class="md-ellipsis">
       statement Lambda 主体
     </span>
@@ -1963,7 +1963,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#使用类完成更复杂的操作" class="md-nav__link">
     <span class="md-ellipsis">
       使用类完成更复杂的操作
     </span>
@@ -1977,7 +1977,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#参考文献" class="md-nav__link">
     <span class="md-ellipsis">
       参考文献
     </span>
@@ -2622,7 +2622,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#lambda" class="md-nav__link">
+  <a href="#lambda-表达式" class="md-nav__link">
     <span class="md-ellipsis">
       Lambda 表达式
     </span>
@@ -2632,7 +2632,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#capture" class="md-nav__link">
+  <a href="#capture-捕获子句" class="md-nav__link">
     <span class="md-ellipsis">
       capture 捕获子句
     </span>
@@ -2641,7 +2641,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#parameters" class="md-nav__link">
+  <a href="#parameters-参数列表" class="md-nav__link">
     <span class="md-ellipsis">
       parameters 参数列表
     </span>
@@ -2650,7 +2650,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#mutable" class="md-nav__link">
+  <a href="#mutable-可变规范" class="md-nav__link">
     <span class="md-ellipsis">
       mutable 可变规范
     </span>
@@ -2659,7 +2659,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#return-type" class="md-nav__link">
+  <a href="#return-type-返回类型" class="md-nav__link">
     <span class="md-ellipsis">
       return-type 返回类型
     </span>
@@ -2668,7 +2668,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#statement-lambda" class="md-nav__link">
+  <a href="#statement-lambda-主体" class="md-nav__link">
     <span class="md-ellipsis">
       statement Lambda 主体
     </span>
@@ -2677,7 +2677,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#使用类完成更复杂的操作" class="md-nav__link">
     <span class="md-ellipsis">
       使用类完成更复杂的操作
     </span>
@@ -2691,7 +2691,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#参考文献" class="md-nav__link">
     <span class="md-ellipsis">
       参考文献
     </span>
@@ -2721,13 +2721,13 @@
 
 <p><strong>注意</strong>：考虑到算法竞赛的实际情况，本文将不会全面研究语法，只会讲述在算法竞赛中可能会应用到的部分。</p>
 <p>本文语法参照 <strong>C++11</strong> 标准。语义不同的将以 <strong>C++11</strong> 作为标准，C++14、C++17 的语法视情况提及并会特别标注。</p>
-<h2 id="lambda">Lambda 表达式</h2>
+<h2 id="lambda-表达式">Lambda 表达式<a class="headerlink" href="#lambda-表达式" title="Permanent link">&para;</a></h2>
 <p>Lambda 表达式因数学中的 <span class="arithmatex">\(\lambda\)</span> 演算得名，直接对应于其中的 lambda 抽象。Lambda 表达式能够捕获作用域中的变量的无名函数对象。我们可以将其理解为一个匿名的内联函数，可以用来替换独立函数或者函数对象，从而使代码更可读。但是从本质上来讲，Lambda 表达式只是一种语法糖，因为它能完成的工作也可以用其他复杂的 C++ 语法来实现。</p>
 <p>下面是 Lambda 表达式的语法：</p>
 <div class="highlight"><pre><span></span><code>[capture] (parameters) mutable -&gt; return-type {statement}
 </code></pre></div>
 <p>下面我们分别对其中的 capture, parameters, mutable, return-type, statement 进行介绍。</p>
-<h3 id="capture">capture 捕获子句</h3>
+<h3 id="capture-捕获子句">capture 捕获子句<a class="headerlink" href="#capture-捕获子句" title="Permanent link">&para;</a></h3>
 <p>Lambda 表达式以 capture 子句开头，它指定哪些变量被捕获，以及捕获是通过值还是引用：有 <code>&amp;</code> 符号前缀的变量通过引用访问，没有该前缀的变量通过值访问。空的 capture 子句 <code>[]</code> 指示 Lambda 表达式的主体不访问封闭范围中的变量。</p>
 <p>我们也可以使用默认捕获模式：<code>&amp;</code> 表示捕获到的所有变量都通过引用访问，<code>=</code> 表示捕获到的所有变量都通过值访问。之后我们可以为特定的变量 <strong>显式</strong> 指定相反的模式。</p>
 <p>例如 Lambda 体要通过引用访问外部变量 <code>a</code> 并通过值访问外部变量 <code>b</code>，则以下子句等效：</p>
@@ -2747,7 +2747,7 @@
 <span class="w">                                  </span><span class="c1">// 注意：请保证 Lambda 被调用时 a 没有被销毁</span>
 <span class="k">auto</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">();</span><span class="w">  </span><span class="c1">// f 从捕获列表里获得 a 的值，无需通过参数传入 a</span>
 </code></pre></div>
-<h3 id="parameters">parameters 参数列表</h3>
+<h3 id="parameters-参数列表">parameters 参数列表<a class="headerlink" href="#parameters-参数列表" title="Permanent link">&para;</a></h3>
 <p>大多数情况下类似于函数的参数列表，例如：</p>
 <div class="highlight"><pre><span></span><code><span class="k">auto</span><span class="w"> </span><span class="n">lam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
 <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">lam</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">lam</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
@@ -2787,14 +2787,14 @@
 <span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">answer</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="mutable">mutable 可变规范</h3>
+<h3 id="mutable-可变规范">mutable 可变规范<a class="headerlink" href="#mutable-可变规范" title="Permanent link">&para;</a></h3>
 <p>利用可变规范，Lambda 表达式的主体可以修改通过值捕获的变量。若使用此关键字，则 parameters <strong>不可省略</strong>（即使为空）。</p>
 <p>一个例子，使用 <strong>capture 捕获字句</strong> 中的例子，来观察 a 的值的变化：</p>
 <div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="k">auto</span><span class="w"> </span><span class="n">func</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">a</span><span class="p">]()</span><span class="w"> </span><span class="k">mutable</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">++</span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
 </code></pre></div>
 <p>此时 lambda 中的 a 的值改变为 1，lambda 外的 a 保持不变。</p>
-<h3 id="return-type">return-type 返回类型</h3>
+<h3 id="return-type-返回类型">return-type 返回类型<a class="headerlink" href="#return-type-返回类型" title="Permanent link">&para;</a></h3>
 <p>用于指定 Lambda 表达式的返回类型。若没有指定返回类型，则返回类型将被自动推断（行为与用 <code>auto</code> 声明返回值的普通函数一致）。具体的，如果函数体中没有 <code>return</code> 语句，返回类型将被推导为 <code>void</code>，否则根据返回值推导。若有多个 <code>return</code> 语句且返回值类型不同，将产生编译错误。</p>
 <p>例如，上文的 <code>lam</code> 也可以写作：</p>
 <div class="highlight"><pre><span></span><code><span class="k">auto</span><span class="w"> </span><span class="n">lam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">int</span>
@@ -2803,7 +2803,7 @@
 <div class="highlight"><pre><span></span><code><span class="k">auto</span><span class="w"> </span><span class="n">x1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="p">};</span><span class="w">  </span><span class="c1">// OK</span>
 <span class="k">auto</span><span class="w"> </span><span class="n">x2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">};</span><span class="w"> </span><span class="p">};</span><span class="w">    </span><span class="c1">// Error, 返回类型被推导为 void</span>
 </code></pre></div>
-<h3 id="statement-lambda">statement Lambda 主体</h3>
+<h3 id="statement-lambda-主体">statement Lambda 主体<a class="headerlink" href="#statement-lambda-主体" title="Permanent link">&para;</a></h3>
 <p>Lambda 主体可包含任何函数可包含的部分。普通函数和 Lambda 表达式主体均可访问以下变量类型：</p>
 <ul>
 <li>从封闭范围捕获变量</li>
@@ -2823,7 +2823,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>最后我们得到输出 <code>5 0</code>。这是由于 <code>n</code> 是通过值捕获的，在调用 Lambda 表达式后仍保持原来的值 <code>0</code> 不变。<code>mutable</code> 规范允许 <code>n</code> 在 Lambda 主体中被修改，将 <code>mutable</code> 删去则编译不通过。</p>
-<h3 id="_1">使用类完成更复杂的操作</h3>
+<h3 id="使用类完成更复杂的操作">使用类完成更复杂的操作<a class="headerlink" href="#使用类完成更复杂的操作" title="Permanent link">&para;</a></h3>
 <p>在 C++11 前没有 Lambda 表达式，但可以使用稍复杂的方法替代，尽管看上去更复杂却更易理解及扩展。</p>
 <p>首先我们已经知道 Lambda 本质是一个可调用的对象，那么直接定义一个类并构造一个对象，重载其 <code>operator()</code> 运算符就可以完成和 Lambda 一样的操作，下面看一个简单的例子，我们将使用 C++17 的语法：</p>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
@@ -2896,7 +2896,7 @@
 </code></pre></div>
 <p>并且既然 <code>Callable</code> 是一个可调用对象，我们也可以通过 <code>std::bind(&amp;AbstractCallable::operator(), t, std::placeholders::_1)</code> 来将其转换再转换为 <code>std::function&lt;int(int)&gt;</code>。</p>
 <p>如果不需要实现类似 <code>std::function</code> 的包装，那么也无需使用抽象基类，这样便和一般的 Lambda 表达式一样不会产生额外的虚拟函数表的开销。</p>
-<h2 id="_2">参考文献</h2>
+<h2 id="参考文献">参考文献<a class="headerlink" href="#参考文献" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://en.cppreference.com/w/cpp/language/lambda">https://en.cppreference.com/w/cpp/language/lambda</a></li>
 </ul>
