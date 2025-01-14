@@ -3834,8 +3834,8 @@ main_frame->reset_block = true;
 <p><img alt="" src="../../../pics/proj-p2-statusbar.png" /></p>
 <p>状态栏又由两个组件构成——左侧的状态信息和右侧的状态时钟。</p>
 <p>现在我们就来实现它。</p>
-<p>在实现之前，我们需要修改一下 <code>tui_canvas.h</code> 的 <code>print_content</code> 实现，使其支持更灵活的参数列表（对模板编程有兴趣的同学可以研究一下这个实现）：</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">tui_canvas.h</label><label for="__tabbed_3_2">tui_canvas.cpp</label></div>
+<p>在实现之前，我们需要修改一下 <code>canvas.h</code> 的 <code>print_content</code> 实现，使其支持更灵活的参数列表（对模板编程有兴趣的同学可以研究一下这个实现）：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">canvas.h</label><label for="__tabbed_3_2">canvas.cpp</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="n">tui_point</span><span class="w"> </span><span class="nf">print_content</span><span class="p">(</span><span class="n">tui_point</span><span class="w"> </span><span class="n">point</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">linelimit</span><span class="p">,</span><span class="w"> </span><span class="n">tui_formatter</span><span class="w"> </span><span class="n">formatter</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">content</span><span class="p">);</span>
