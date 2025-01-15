@@ -826,6 +826,24 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#像素矩阵类" class="md-nav__link">
+    <span class="md-ellipsis">
+      像素矩阵类
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#解析-bmp-为像素矩阵" class="md-nav__link">
+    <span class="md-ellipsis">
+      解析 BMP 为像素矩阵
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2713,6 +2731,24 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#像素矩阵类" class="md-nav__link">
+    <span class="md-ellipsis">
+      像素矩阵类
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#解析-bmp-为像素矩阵" class="md-nav__link">
+    <span class="md-ellipsis">
+      解析 BMP 为像素矩阵
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2796,9 +2832,165 @@
 <p>数据类型！每个变量都属于某种数据类型。</p>
 <p>借此，我们就能把二进制数据解析为各种不同类型，有实际意义的变量。</p>
 <p>因此，对于一般的二进制文件，我们也把它视为若干变量（二进制）数据的拼合就行了。</p>
-<p>那么说会</p>
+<p>那么说回二进制文件的读取</p>
 <h3 id="bmp-文件简介">BMP 文件简介<a class="headerlink" href="#bmp-文件简介" title="Permanent link">&para;</a></h3>
-<p><a href="https://zh.wikipedia.org/wiki/BMP">BMP</a> 是一种储存图像的文件格式，其名来源于 BitMaP （位图）。 </p>
+<p><a href="https://zh.wikipedia.org/wiki/BMP">BMP</a> 是一种储存图像的文件格式，其名来源于 BitMaP （位图）</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// BMP 文件头数据结构</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">tui_bmp_header</span><span class="p">{</span>
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">bfType</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">bfSize</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">bfReserved</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">bfOffBits</span><span class="p">;</span>
+<span class="p">}</span><span class="n">__attribute__</span><span class="p">((</span><span class="n">packed</span><span class="p">));</span>
+
+<span class="c1">// BMP 信息头数据结构</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">tui_bitmap_info</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">biSize</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">biWidth</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int32_t</span><span class="w">  </span><span class="n">biHeight</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">biPlanes</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">biBitCount</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">biCompression</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">biSizeImages</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int32_t</span><span class="w">  </span><span class="n">biXPelsPerMeter</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int32_t</span><span class="w">  </span><span class="n">biYPelsPerMeter</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">biClrUsed</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">biClrImportant</span><span class="p">;</span>
+<span class="p">}</span><span class="n">__attribute</span><span class="p">((</span><span class="n">packed</span><span class="p">));</span>
+
+<span class="c1">// BMP 像素（24 位色）数据结构</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">tui_bmp_pixel_24</span><span class="p">{</span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">g</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
+<span class="p">}</span><span class="n">__attribute__</span><span class="p">((</span><span class="n">packed</span><span class="p">));</span>
+</code></pre></div>
+<h3 id="像素矩阵类">像素矩阵类<a class="headerlink" href="#像素矩阵类" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">tui_pixelmap</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">width</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">height</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">byte_per_pixel</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">**</span><span class="n">bitmap</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">tui_pixelmap</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">height</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">byte_per_pixel</span><span class="o">=</span><span class="mi">3</span><span class="p">);</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">at</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">set_pixel</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">pixel</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="n">rgb_color</span><span class="w"> </span><span class="n">color_t</span><span class="o">&gt;</span>
+<span class="w">  </span><span class="n">color_t</span><span class="w"> </span><span class="o">*</span><span class="n">at</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">tui_assert</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">color_t</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">byte_per_pixel</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">color_t</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">at</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// 返回 (x, y) 处的像素</span>
+<span class="w">  </span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="n">rgb_color</span><span class="w"> </span><span class="n">color_t</span><span class="o">&gt;</span>
+<span class="w">  </span><span class="n">color_t</span><span class="w"> </span><span class="n">get_pixel</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">tui_assert</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">color_t</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">byte_per_pixel</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="n">color_t</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">at</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// 设置 (x, y) 处像素</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">set_pixel</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">rgb_color</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">tui_assert</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">byte_per_pixel</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">pixel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="n">color</span><span class="p">;</span>
+<span class="w">    </span><span class="n">set_pixel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">pixel</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="n">rgb_color</span><span class="w"> </span><span class="n">color_t</span><span class="o">&gt;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">set_pixel</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">tui_assert</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">color_t</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">byte_per_pixel</span><span class="p">);</span>
+<span class="w">    </span><span class="n">color_t</span><span class="w"> </span><span class="n">color</span><span class="p">;</span>
+<span class="w">    </span><span class="n">color</span><span class="p">.</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">.</span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">.</span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">    </span><span class="n">set_pixel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// 获取像素矩阵**终端位置** (x, y) 上的前景色/背景色</span>
+<span class="w">  </span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="n">rgb_color</span><span class="w"> </span><span class="n">color_t</span><span class="o">&gt;</span>
+<span class="w">  </span><span class="n">tui_formatter</span><span class="w"> </span><span class="n">get_formatter</span><span class="p">(</span><span class="n">tui_point</span><span class="w"> </span><span class="n">point</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">tui_assert</span><span class="p">(</span><span class="n">byte_per_pixel</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">color_t</span><span class="p">));</span>
+<span class="w">    </span><span class="c1">// task phase3: generate formatter in this position</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// 解析 `filename` 指定的 bmp 文件并返回一个像素矩阵</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">tui_pixelmap</span><span class="w"> </span><span class="o">*</span><span class="n">from_bmp</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">filename</span><span class="p">);</span>
+
+<span class="w">  </span><span class="o">~</span><span class="n">tui_pixelmap</span><span class="p">();</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="解析-bmp-为像素矩阵">解析 BMP 为像素矩阵<a class="headerlink" href="#解析-bmp-为像素矩阵" title="Permanent link">&para;</a></h3>
+<p>为了简化任务，我们只支持一类目前最常见的 BMP：</p>
+<ul>
+<li>色深（<code>biBitCount</code>）为 24 位，每个颜色为三个字节。</li>
+<li>没有调色盘，图像数据从文件 <code>0x36</code> 地址处开始。</li>
+<li>数据区不设置压缩。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">tui_pixelmap</span><span class="w"> </span><span class="o">*</span>
+<span class="nf">tui_pixelmap::from_bmp</span><span class="p">(</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">filename</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rb&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">fp</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Warn</span><span class="p">(</span><span class="s">&quot;Cannot open file %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">tui_bmp_header</span><span class="w"> </span><span class="n">header</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// 读取 BMP 文件头</span>
+<span class="w">  </span><span class="n">fread</span><span class="p">(</span><span class="o">&amp;</span><span class="n">header</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">header</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">fp</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// 检查魔数</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">header</span><span class="p">.</span><span class="n">bfType</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mh">0x4d42</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Warn</span><span class="p">(</span><span class="s">&quot;Not a bmp file!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">header</span><span class="p">.</span><span class="n">bfOffBits</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mh">0x36</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Warn</span><span class="p">(</span><span class="s">&quot;Do not support bmp file with offset %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="p">.</span><span class="n">bfOffBits</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">tui_bitmap_info</span><span class="w"> </span><span class="n">info</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// 读取 BMP 信息头</span>
+<span class="w">  </span><span class="n">fread</span><span class="p">(</span><span class="o">&amp;</span><span class="n">info</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">info</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">fp</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// 检查</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">biSize</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">40</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Warn</span><span class="p">(</span><span class="s">&quot;Only support 40 bytes info header!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">biBitCount</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">24</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Warn</span><span class="p">(</span><span class="s">&quot;Only support 24-bit bmp file!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">biPlanes</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Warn</span><span class="p">(</span><span class="s">&quot;Only support 1 plane bmp file!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">biCompression</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Warn</span><span class="p">(</span><span class="s">&quot;Only support uncompressed bmp file!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">biClrUsed</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Warn</span><span class="p">(</span><span class="s">&quot;Do not support bmp file with color table!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// just ignore it</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">biClrImportant</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Warn</span><span class="p">(</span><span class="s">&quot;bmp file with important color!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// just ignore it</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// task phase3: read the pixel data according to the rest of the file</span>
+
+<span class="w">  </span><span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// task phase3: fill it</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 
