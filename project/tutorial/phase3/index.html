@@ -844,6 +844,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#运行测试" class="md-nav__link">
+    <span class="md-ellipsis">
+      运行测试
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2749,6 +2758,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#运行测试" class="md-nav__link">
+    <span class="md-ellipsis">
+      运行测试
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2991,6 +3009,14 @@
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
+<h3 id="运行测试">运行测试<a class="headerlink" href="#运行测试" title="Permanent link">&para;</a></h3>
+<p>我们已经在 <code>test/bmp/</code> 下为你准备好了测试程序。</p>
+<p>这个测试程序不是个 minitui 程序而只是一个普通的命令行程序，因为它不运行 <code>tui_init()</code> 和 <code>tui_exec()</code> 之类的接口。</p>
+<p>但是它引用了 minitui 的类库，可以对 minitui 类库的正确性进行测试。</p>
+<p>只需这么运行测试：</p>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>-j8<span class="w"> </span>game<span class="w"> </span><span class="nv">STAGE</span><span class="o">=</span>test/bmp
+</code></pre></div>
+<p>如果运行后</p>
 
 
 
