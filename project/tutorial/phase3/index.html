@@ -811,18 +811,60 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#解析二进制文件" class="md-nav__link">
+  <a href="#引入_1" class="md-nav__link">
     <span class="md-ellipsis">
-      解析二进制文件
+      引入
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#bmp-文件简介" class="md-nav__link">
+  <a href="#解析二进制文件" class="md-nav__link">
     <span class="md-ellipsis">
-      BMP 文件简介
+      解析二进制文件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="解析二进制文件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#文件字节序列" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件：字节序列
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#文件变量数据的排列" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件：变量数据的排列
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#文件格式文件数据的结构" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件格式：文件数据的结构
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bmp-文件格式" class="md-nav__link">
+    <span class="md-ellipsis">
+      BMP 文件格式
     </span>
   </a>
   
@@ -2746,18 +2788,60 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#解析二进制文件" class="md-nav__link">
+  <a href="#引入_1" class="md-nav__link">
     <span class="md-ellipsis">
-      解析二进制文件
+      引入
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#bmp-文件简介" class="md-nav__link">
+  <a href="#解析二进制文件" class="md-nav__link">
     <span class="md-ellipsis">
-      BMP 文件简介
+      解析二进制文件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="解析二进制文件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#文件字节序列" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件：字节序列
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#文件变量数据的排列" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件：变量数据的排列
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#文件格式文件数据的结构" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件格式：文件数据的结构
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bmp-文件格式" class="md-nav__link">
+    <span class="md-ellipsis">
+      BMP 文件格式
     </span>
   </a>
   
@@ -2836,6 +2920,7 @@
 <li>实现文件查看器，可展示 <code>storage</code> 下文件列表及展示选定文件（如支持）。</li>
 </ul>
 <h2 id="代码任务一显示-bmp-格式图片">代码任务一：显示 bmp 格式图片<a class="headerlink" href="#代码任务一显示-bmp-格式图片" title="Permanent link">&para;</a></h2>
+<h3 id="引入_1">引入<a class="headerlink" href="#引入_1" title="Permanent link">&para;</a></h3>
 <p>要实现上述支持 bmp 图片显示的文件查看器，首先我们要能够在终端中（而未必要使用 <code>minitui</code>）显示一个 bmp 文件。</p>
 <p>按照「把大象装进冰箱」的做法，我们只需要做这三件事：</p>
 <ul>
@@ -2846,61 +2931,204 @@
 <p>OK，第一步我会，<code>fopen</code> 嘛！</p>
 <p>第二步……怎么解析文件来着，<code>sscanf</code>？</p>
 <p>完了，这玩意好像不是文本，搞不会。<del>还是问 GPT 吧。</del></p>
-<p>看来我们遇到了困难，这里有必要介绍一下如何使用 C 语言解析一个二进制文件。</p>
+<p>看来我们遇到了困难，这里有必要介绍一下如何解析一个二进制文件。</p>
 <h3 id="解析二进制文件">解析二进制文件<a class="headerlink" href="#解析二进制文件" title="Permanent link">&para;</a></h3>
-<p>在编程之外，我们通常把文件看作一个储存了数据的抽象实体。</p>
-<p>但当我们需要自己解析文件数据时，我们就有必要了解文件数据的结构了。</p>
-<p>那么，文件数据的结构是什么呢？</p>
-<p>从通用的角度来看，文件数据就是一个二进制字节序列。</p>
-<p>用 C 语言表示就是一个 <code>uint8_t</code> 或者 <code>unsigned char</code> 数组，就这么简单。</p>
-<p>文本文件就是文本字符串“数组”直接写入文件的结果。</p>
+<!-- 
+我们通常把文件看作一个储存了特定数据的抽象实体。
+
+解析文件就是将文件变为 -->
+
+<!-- 
+这数据可能是图像数据，文本数据，音视频数据等等……总之我们可以用后缀名来区分文件 -->
+
+<h4 id="文件字节序列">文件：字节序列<a class="headerlink" href="#文件字节序列" title="Permanent link">&para;</a></h4>
+<p><em>注：本节只讨论一般的数据文件，特殊文件不在讨论之列。</em></p>
+<!-- 在编程之外，我们通常把文件看作一个储存了数据的抽象实体。
+
+数据可能有很多类型，对应地，文件也有很多类型，比如文本文件，视频文件，音频文件，图像文件，等等。
+
+但当我们需要自己解析文件时，我们就有必要了解文件是如何表示数据的了。 -->
+
+<p>和任何计算机数据一样，文件数据存在的形式很简单——一段二进制字节序列。</p>
+<p>在程序中，我们可以用字符数组来表示和存储这样的二进制序列。</p>
+<p>因此，我们可以用 <code>fread</code> 来以字符数组的形式读取任意文件的数据：</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 文件数据可能很大，因此我们把它分成若干段长度最多为 4096 字节的字符数组</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="mi">4096</span><span class="p">];</span>
+<span class="c1">// 打开文件，r 表示读取，b 表示二进制模式</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="s">&quot;some_file&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rb&quot;</span><span class="p">);</span>
+<span class="cm">/* </span>
+<span class="cm">fread(</span>
+<span class="cm">  void *, // 数组首地址</span>
+<span class="cm">  size_t, // 每个元素的大小（字节计），这里是 1</span>
+<span class="cm">  size_t, // 读取的最大个数</span>
+<span class="cm">  FILE *  // 目标文件指针</span>
+<span class="cm">)</span>
+<span class="cm">*/</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fread</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4096</span><span class="p">,</span><span class="w"> </span><span class="n">fp</span><span class="p">);</span><span class="w"> </span><span class="c1">// 返回成功读取的个数</span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">bytes</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// do something to `data`</span>
+<span class="w">  </span><span class="c1">// fread 会从上次读取的最后一个字节之后继续读取</span>
+<span class="w">  </span><span class="n">bytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fread</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4096</span><span class="p">,</span><span class="w"> </span><span class="n">fp</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="文件变量数据的排列">文件：变量数据的排列<a class="headerlink" href="#文件变量数据的排列" title="Permanent link">&para;</a></h4>
+<!-- 要用字符数组表示文本是简单的——在计算机中，文本（字符串）本来就是一个字符数组。 -->
+
+<p>如果我们读取的是一个文本文件，那么不需额外解析——在计算机中，文本（字符串）本来就是一个字节数组，按照字符编码解码即可。</p>
+<p>那要用它表示其他变量/对象呢？也很简单——我们知道，在计算机中，所有变量/对象本身也是用一个字节序列表示的，也就是可以用一段字符数组来表示。</p>
+<p>可以看到，文本字符串也好，其他变量/对象也好，在内存中和在文件中的表示形式——字节序列——都没有区别，那么，要从文件中获取一个变量/对象，就只要把这串字节序列从文件里搬到内存里就好了。</p>
+<p>要这么做，同样可以使用 <code>fread</code>——只需将变量的首地址作为“字符数组”首地址就好了。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 以二进制模式打开文件</span>
+<span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rb&quot;</span><span class="p">);</span>
+<span class="n">some_type</span><span class="w"> </span><span class="n">some_obj</span><span class="p">;</span>
+<span class="cm">/* </span>
+<span class="cm">fread(</span>
+<span class="cm">  void *, // 数组首地址</span>
+<span class="cm">  size_t, // 每个元素的大小（字节计），这里是 1</span>
+<span class="cm">  size_t, // 读取的最大个数</span>
+<span class="cm">  FILE *  // 目标文件指针</span>
+<span class="cm">)</span>
+<span class="cm">*/</span>
+<span class="c1">// 从文件中读取对象数据</span>
+<span class="n">fread</span><span class="p">(</span><span class="o">&amp;</span><span class="n">some_obj</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">some_type</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">fp</span><span class="p">);</span>
+<span class="c1">// 关闭文件</span>
+<span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+</code></pre></div>
+<p>不过，文件数据可能是由多个简单或复合变量共同构成的，我们可以按上面的方法把它们逐个地读取到内存中。</p>
+<h4 id="文件格式文件数据的结构">文件格式：文件数据的结构<a class="headerlink" href="#文件格式文件数据的结构" title="Permanent link">&para;</a></h4>
+<p>不过，我们怎么知道文件数据里面有哪些变量/对象呢？它们又是以什么样的顺序排列的呢？</p>
+<!-- 这就是文件数据的结构。 -->
+
+<p>这些由文件的<strong>文件格式</strong>定义，也可以称为<strong>文件类型</strong>。</p>
+<p>文件格式就像数据类型，能够定义文件数据的结构。</p>
+<p>文件格式可能体现在文件名中，比如 <code>xx.bmp</code> 是一个 BMP 格式的文件，<code>yy.txt</code> 是一个文本格式的文件，等等。</p>
+<p>还有一些文件格式会规定文件数据的头几个字节的内容，我们一般把这头几个字节称作<strong>魔数</strong>。</p>
+<p>不过，就和内存中的数据其实可以按照不同的数据类型解读一样，其实也没有绝对的判定一个文件的文件格式的方法。一般来说，我们会根据文件名或魔数或其他信息，先入为主或约定俗成地认定一个文件的格式，然后去按照该格式读取它。</p>
+<p>总之，只要选定一种文件格式，辅以前面的 <code>fread</code> 函数，我们就可以正确地将一个文件的数据读取出来，或至少判断出其数据不符合该文件格式。</p>
+<!-- C 提供了 `fopen` 函数来将一个文件 -->
+
+<!-- 首先，文件数据是什么呢？
+
+本质上，文件数据就是一个二进制字节序列。 -->
+
+<!-- 
+用 C 语言表示就是一个 `uint8_t` 或者 `unsigned char` 数组，就这么简单。
+
+文本字符串本身就是一个字节数组，因此文本文件的数据也就是一个字节数组。
+
+要解析这玩意，和解析一个字符串也没什么区别。 -->
+
+<!-- 文本文件就是文本字符串“数组”直接写入文件的结果。 -->
+
+<!-- 二进制文件就是将一个“结构体”的内存数据全部写入文件的结果 -->
+
 <!-- *文本字符串“数组”是文本编码后的内容，例如 `bmp` 的 ASCII 编码是三个字节 `0x62`, `0x6d`, `0x70`。 -->
 
-<details class="info">
-<summary>编码与乱码</summary>
-<p>我们知道，文本字符串在计算机中也是用二进制字节序列表示的。</p>
-<p>文本和二进制的桥梁是<strong>编码</strong>。</p>
-<p>同样的文本，基于不同编码会得到不同的数据。</p>
-<p>如果将文本用某一编码存放，又以另一方式读取之后，就会出现<em>乱码</em>。</p>
-<p>强行将非文本文件以文本编码解码也会出现乱码。</p>
-<p>比如“烫烫烫”、“锟斤拷”。</p>
-</details>
-<p>OK，那非文本文件呢？总不能就读进来一个字符数组干瞪眼吧。</p>
-<p>让我们来知识迁移一下：</p>
-<p>我们知道，内存也是一个二进制字节序列，我们是如何利用内存表示数据的呢？</p>
-<p>变量！每个变量占据了若干个字节，这若干个字节的值共同表示了变量的值。</p>
-<p>那么，是什么东西描述了一个变量的字节长度和结构呢？</p>
-<p>数据类型！每个变量都属于某种数据类型。</p>
-<p>借此，我们就能把二进制数据解析为各种不同类型，有实际意义的变量。</p>
-<p>因此，对于一般的二进制文件，我们也把它视为若干变量（二进制）数据的拼合就行了。</p>
-<p>那么说回二进制文件的读取</p>
-<h3 id="bmp-文件简介">BMP 文件简介<a class="headerlink" href="#bmp-文件简介" title="Permanent link">&para;</a></h3>
-<p><a href="https://zh.wikipedia.org/wiki/BMP">BMP</a> 是一种储存图像的文件格式，其名来源于 BitMaP （位图）</p>
+<!-- ??? info "编码与乱码"
+
+    我们知道，文本字符串在计算机中也是用二进制字节序列表示的。
+
+    文本和二进制的桥梁是**编码**。
+
+    同样的文本，基于不同编码会得到不同的数据。
+
+    如果将文本用某一编码存放，又以另一方式读取之后，就会出现*乱码*。
+
+    强行将非文本文件以文本编码解码也会出现乱码。
+
+    比如“烫烫烫”、“锟斤拷”。 -->
+
+<!-- OK，那非文本文件呢？总不能也是一个字节数组吧。欸，还真可以是—— -->
+
+<!-- 除了文本字符串，文件的“字节数组”还可以表示什么呢？答案是所有东西。
+
+在学习变量的时候我们就知道，计算机的所有变量数据都是由内存中的一串连续字节表示的。
+
+<!-- 我们知道，计算机内部的变量/对象数据最后都是用一串连续字节表示，存放在内存中的。 -->
+
+<!-- 从这个角度，一个变量/对象在内存中是怎么存在的，在文件中还可以是怎么存在的
+
+从这个角度，内存中的变量/对象和文件中的变量/对象其实是等同的——一串连续字节。
+
+毋宁说，文件本身就是用于持久化内存（易失性介质）上的数据的，要是不等同才有鬼呢。
+
+那么文本文件也好，二进制文件也好，实际上谁也不比谁特殊，都是某个变量/对象背后的字节序列的载体罢了——只不过前者是一个字符串，后者是可以是各种类型的变量/对象。 -->
+<!-- 
+总结一下，所有一般文件的本质都是一串字节序列，代表着某个变量/对象 -->
+
+<!-- 对于非文本文件，文件数据的结构和存放在内存中的数据结构是相似的。 -->
+
+<!-- 让我们来知识迁移一下：
+
+我们知道，内存也是一个二进制字节序列，我们是如何利用内存表示数据的呢？
+
+变量！每个变量占据了若干个字节，这若干个字节的值共同表示了变量的值。
+
+那么，是什么东西描述了一个变量的字节长度和结构呢？
+
+数据类型！每个变量都属于某种数据类型。
+
+借此，我们就能把二进制数据解析为各种不同类型，有实际意义的变量。
+
+因此，一般的二进制文件也可以视为若干变量数据的二进制拼合。
+
+更进一步地，还可把整个文件数据看作一个变量（对象）的二进制表示，解析文件的过程即获取这个变量的值/对象的状态的过程。
+
+将整个文件数据看作一个 -->
+
+<h3 id="bmp-文件格式">BMP 文件格式<a class="headerlink" href="#bmp-文件格式" title="Permanent link">&para;</a></h3>
+<p>现在我们回到正题——解析 BMP 文件。</p>
+<p>由上文，要解析某格式的文件，我们首先需要了解该格式描述的数据结构。</p>
+<p><a href="https://zh.wikipedia.org/wiki/BMP">BMP</a> 是一种储存图像的文件格式，其名来源于 BitMaP （位图）。</p>
+<p>我们知道，计算机图像其实就是二维的像素矩阵，要表示这个像素矩阵，只需知道其行数、列数和每个像素的值就可以了。</p>
+<!-- 顾名思义，BMP 储存图像的方式相当简单暴力：将图像视为一个二维像素矩阵，然后将这些像素一行一行地排列下来。 -->
+
+<p>BMP 表示图像的思路就是这样的：首先在开头表示出图片的行、列，然后在后面列出所有像素的数据就可以了。</p>
+<p>不过事实上，由于表示像素的方式有很多种，所以 BMP 还需要在开头存下表示像素的方式，甚至一些调色盘信息，是否压缩像素数据等信息，使得其文件头变得很复杂，有足足 54 个字节。</p>
+<p>一般来讲，我们将 BMP 的文件头划分成两个对象——文件头和信息头，这两个对象的类型分别是：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">文件头</label><label for="__tabbed_1_2">信息头</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1">// BMP 文件头数据结构</span>
 <span class="k">struct</span><span class="w"> </span><span class="nc">tui_bmp_header</span><span class="p">{</span>
-<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">bfType</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">bfSize</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">bfReserved</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">bfOffBits</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">bfType</span><span class="p">;</span><span class="w">      </span><span class="c1">// 魔数，0x4d42 &quot;BM&quot;</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">bfSize</span><span class="p">;</span><span class="w">      </span><span class="c1">// 文件大小</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">bfReserved</span><span class="p">;</span><span class="w">  </span><span class="c1">// 总是为零</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">bfOffBits</span><span class="p">;</span><span class="w">   </span><span class="c1">// 像素数据在文件中的位置</span>
 <span class="p">}</span><span class="n">__attribute__</span><span class="p">((</span><span class="n">packed</span><span class="p">));</span>
-
-<span class="c1">// BMP 信息头数据结构</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1">// BMP 信息头数据结构</span>
 <span class="k">struct</span><span class="w"> </span><span class="nc">tui_bitmap_info</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">biSize</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">biWidth</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">int32_t</span><span class="w">  </span><span class="n">biHeight</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">biPlanes</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">biBitCount</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">biCompression</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">biSizeImages</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">int32_t</span><span class="w">  </span><span class="n">biXPelsPerMeter</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">int32_t</span><span class="w">  </span><span class="n">biYPelsPerMeter</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">biClrUsed</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">biClrImportant</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">biSize</span><span class="p">;</span><span class="w">              </span><span class="c1">// 头的大小</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">biWidth</span><span class="p">;</span><span class="w">             </span><span class="c1">// 图片的宽度</span>
+<span class="w">  </span><span class="kt">int32_t</span><span class="w">  </span><span class="n">biHeight</span><span class="p">;</span><span class="w">            </span><span class="c1">// 图片的高度</span>
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">biPlanes</span><span class="p">;</span><span class="w">            </span><span class="c1">// 总是为 1</span>
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">biBitCount</span><span class="p">;</span><span class="w">          </span><span class="c1">// 色深，每个像素有多少位</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">biCompression</span><span class="p">;</span><span class="w">       </span><span class="c1">// 压缩方式</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">biSizeImages</span><span class="p">;</span><span class="w">        </span><span class="c1">// 图片有多大</span>
+<span class="w">  </span><span class="kt">int32_t</span><span class="w">  </span><span class="n">biXPelsPerMeter</span><span class="p">;</span><span class="w">     </span><span class="c1">// X 轴分辨率</span>
+<span class="w">  </span><span class="kt">int32_t</span><span class="w">  </span><span class="n">biYPelsPerMeter</span><span class="p">;</span><span class="w">     </span><span class="c1">// Y 轴分辨率</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">biClrUsed</span><span class="p">;</span><span class="w">           </span><span class="c1">// 调色盘用了多少种颜色</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">biClrImportant</span><span class="p">;</span><span class="w">      </span><span class="c1">// 有多少种颜色是重要的</span>
 <span class="p">}</span><span class="n">__attribute</span><span class="p">((</span><span class="n">packed</span><span class="p">));</span>
-
-<span class="c1">// BMP 像素（24 位色）数据结构</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>为了简化任务，我们只支持一类目前最常见的 BMP：</p>
+<ul>
+<li>色深（<code>biBitCount</code>）为 24，每个颜色为三个字节。</li>
+<li>没有调色盘，像素数据直接就放在信息头后面，即 <code>bfOffBits == 0x36</code>。</li>
+<li>数据区不设置压缩，即 <code>biCompression</code> 为零。</li>
+</ul>
+<p>如果遇到不满足条件的 BMP 文件，我们直接拒绝解析它即可。</p>
+<p>因此，我们只需要关心文件头和信息头中的两个变量，即 <code>biWidth</code>，<code>biHeight</code>，其他全部都不用管。</p>
+<p>像素的数据结构可以是：</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// BMP 像素（24 位色）数据结构</span>
 <span class="k">struct</span><span class="w"> </span><span class="nc">tui_bmp_pixel_24</span><span class="p">{</span>
 <span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">g</span><span class="p">;</span>
@@ -2908,6 +3136,10 @@
 <span class="p">}</span><span class="n">__attribute__</span><span class="p">((</span><span class="n">packed</span><span class="p">));</span>
 </code></pre></div>
 <h3 id="像素矩阵类">像素矩阵类<a class="headerlink" href="#像素矩阵类" title="Permanent link">&para;</a></h3>
+<p>为了方便对像素矩阵的存储与操作，我们将像素矩阵包装成一个类：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">pixelmap.h</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">tui_pixelmap</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">width</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">height</span><span class="p">;</span>
@@ -2947,7 +3179,7 @@
 <span class="w">    </span><span class="n">set_pixel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="c1">// 获取像素矩阵**终端位置** (x, y) 上的前景色/背景色</span>
+<span class="w">  </span><span class="c1">// 获取像素矩阵**终端相对位置** (x, y) 上的前景色/背景色</span>
 <span class="w">  </span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="n">rgb_color</span><span class="w"> </span><span class="n">color_t</span><span class="o">&gt;</span>
 <span class="w">  </span><span class="n">tui_formatter</span><span class="w"> </span><span class="n">get_formatter</span><span class="p">(</span><span class="n">tui_point</span><span class="w"> </span><span class="n">point</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">tui_assert</span><span class="p">(</span><span class="n">byte_per_pixel</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">color_t</span><span class="p">));</span>
@@ -2960,13 +3192,12 @@
 <span class="w">  </span><span class="o">~</span><span class="n">tui_pixelmap</span><span class="p">();</span>
 <span class="p">};</span>
 </code></pre></div>
+</div>
+</div>
+</div>
+<p>我们这里留了一个空，因为在终端上，我们用一个位置来表示两个像素，其中该位置的前景色用于表示上面的像素，背景色用于表示下面的像素，因此在</p>
 <h3 id="解析-bmp-为像素矩阵">解析 BMP 为像素矩阵<a class="headerlink" href="#解析-bmp-为像素矩阵" title="Permanent link">&para;</a></h3>
-<p>为了简化任务，我们只支持一类目前最常见的 BMP：</p>
-<ul>
-<li>色深（<code>biBitCount</code>）为 24 位，每个颜色为三个字节。</li>
-<li>没有调色盘，图像数据从文件 <code>0x36</code> 地址处开始。</li>
-<li>数据区不设置压缩。</li>
-</ul>
+<p>在像素矩阵类中，已经预留了一个将 bmp 转化为</p>
 <div class="highlight"><pre><span></span><code><span class="n">tui_pixelmap</span><span class="w"> </span><span class="o">*</span>
 <span class="nf">tui_pixelmap::from_bmp</span><span class="p">(</span>
 <span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">filename</span>
